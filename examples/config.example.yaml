@@ -1,0 +1,28 @@
+# Example strategy configuration — synthetic, alpha-free.
+# Replace with your own. The toolkit does not care what the keys are;
+# it just hashes this structure and diffs it against the clean baseline.
+
+universe:
+  - DEMO1
+  - DEMO2
+  - DEMO3
+
+risk:
+  max_position_pct: 0.20
+  total_capital: 10000
+  max_positions: 5
+
+execution:
+  slippage_per_share: 0.02
+  max_entry_price: 500.0
+
+session:
+  entry_start_hour: 10
+  entry_end_hour: 15
+
+cooldown_bars: 5
+
+feature_flags:
+  auto_confirm_entries: true
+  route_to_next_candidate: true
+  use_volatility_filter: false

@@ -1,0 +1,31 @@
+{
+  "config": {
+    "cooldown_bars": 5,
+    "execution": {
+      "max_entry_price": 500.0,
+      "slippage_per_share": 0.02
+    },
+    "risk": {
+      "max_position_pct": 0.2,
+      "max_positions": 5,
+      "total_capital": 10000
+    },
+    "session": {
+      "entry_end_hour": 15,
+      "entry_start_hour": 10
+    },
+    "universe": ["DEMO1", "DEMO2", "DEMO3"]
+  },
+  "config_hash": "to-be-filled-in-by-qlrk-freeze",
+  "dirty_files": [],
+  "feature_flags": {
+    "auto_confirm_entries": true,
+    "route_to_next_candidate": true,
+    "use_volatility_filter": false
+  },
+  "generated_at": "2026-01-01T00:00:00+00:00",
+  "git_dirty": false,
+  "git_sha": "0000000000000000000000000000000000000000",
+  "notes": "clean baseline captured at start of paper-validation phase",
+  "python_version": "3.11.0"
+}
