@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "quant-live-readiness-kit"
+version = "0.1.0"
+description = "Operational toolkit for taking a systematic trading strategy from research to auditable paper and live readiness."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+    { name = "quant-live-readiness-kit contributors" },
+]
+keywords = [
+    "quant",
+    "trading",
+    "systematic",
+    "paper-trading",
+    "live-readiness",
+    "reconciliation",
+    "monitoring",
+    "kill-switch",
+    "risk",
+    "ops",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.4",
+    "yfinance>=0.2",
+]
+demo = [
+    "yfinance>=0.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/cyangIIT/quant-live-readiness-kit"
+Issues = "https://github.com/cyangIIT/quant-live-readiness-kit/issues"
+Changelog = "https://github.com/cyangIIT/quant-live-readiness-kit/blob/main/CHANGELOG.md"
+
+[project.scripts]
+qlrk = "qlrk.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qlrk"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/qlrk/_data/sample_aapl_daily.csv" = "qlrk/_data/sample_aapl_daily.csv"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501"]

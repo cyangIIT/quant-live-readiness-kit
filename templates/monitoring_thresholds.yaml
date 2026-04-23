@@ -1,0 +1,71 @@
+# Monitoring rules template. Every threshold below is a placeholder —
+# replace with numbers that make sense for your strategy and capital size.
+# The toolkit does not endorse any particular values.
+
+rules:
+  # --- capital-at-risk rails ------------------------------------------------
+  - name: drawdown_warn
+    metric: max_drawdown_pct
+    op: ">"
+    threshold: 0.03          # TODO: tune to your envelope
+    severity: WARN
+    message: "soft drawdown threshold"
+
+  - name: drawdown_halt
+    metric: max_drawdown_pct
+    op: ">"
+    threshold: 0.07          # TODO: tune. This engages the kill switch.
+    severity: HALT
+    message: "hard drawdown threshold — kill switch must engage"
+
+  # --- execution quality ----------------------------------------------------
+  - name: fill_rate_warn
+    metric: fill_rate
+    op: "<"
+    threshold: 0.8
+    severity: WARN
+    message: "fill rate below soft floor"
+
+  - name: fill_rate_halt
+    metric: fill_rate
+    op: "<"
+    threshold: 0.5
+    severity: HALT
+    message: "fill rate collapse — stop before more orders"
+
+  - name: reject_rate_warn
+    metric: order_reject_rate
+    op: ">"
+    threshold: 0.05
+    severity: WARN
+    message: "order reject rate elevated"
+
+  # --- model vs broker parity -----------------------------------------------
+  - name: divergence_count_warn
+    metric: reconciliation_divergences
+    op: ">"
+    threshold: 2
+    severity: WARN
+    message: "model/broker parity slipping"
+
+  - name: divergence_count_halt
+    metric: reconciliation_divergences
+    op: ">"
+    threshold: 10
+    severity: HALT
+    message: "too many divergences — stop and investigate"
+
+  # --- operator-visible infra ----------------------------------------------
+  - name: uptime_warn
+    metric: uptime_pct
+    op: "<"
+    threshold: 0.95
+    severity: WARN
+    message: "engine uptime below acceptable floor"
+
+  - name: data_staleness_halt
+    metric: data_staleness_seconds
+    op: ">"
+    threshold: 300
+    severity: HALT
+    message: "data feed appears stale — do not place new orders"

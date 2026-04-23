@@ -1,0 +1,35 @@
+{
+  "title": "Fill-rate collapse during session",
+  "detected_at": "2026-01-02T15:34:00+00:00",
+  "severity": "HALT",
+  "authored_by": "example-operator",
+  "summary": "Broker fills began to diverge from model fills at 15:30 UTC. Investigation suggests a timeout configuration regression. Engaged kill switch after 4 consecutive divergences.",
+  "actions_taken": [
+    "Engaged kill switch at 15:34 UTC via qlrk",
+    "Exported current manifest and compared to clean baseline",
+    "Rolled back feature_flag regression in next deploy"
+  ],
+  "followups": [
+    "Add explicit timeout unit test",
+    "Tighten monitoring threshold for fill_rate_warn from 0.7 to 0.8",
+    "Add reconciliation_match_rate to the daily review"
+  ],
+  "health": {
+    "state": "HALT",
+    "triggered": [
+      {
+        "name": "fill_rate_halt",
+        "message": "fill rate collapse — liquidity/execution issue likely"
+      }
+    ]
+  },
+  "reconciliation": {
+    "matched": 3,
+    "divergences": [
+      {"kind": "price_mismatch", "symbol": "DEMO1", "detail": "price diff 100.00 vs 100.02"},
+      {"kind": "qty_mismatch", "symbol": "DEMO2", "detail": "qty diff 15 vs 14"},
+      {"kind": "price_mismatch", "symbol": "DEMO3", "detail": "price diff 74.20 vs 74.80"},
+      {"kind": "extra_at_broker", "symbol": "DEMO1", "detail": "broker fill ord-0008 has no model counterpart"}
+    ]
+  }
+}

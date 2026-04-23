@@ -1,0 +1,48 @@
+# Example promotion-gate checklist: paper -> limited_live.
+# Adapt thresholds to your strategy. Every check must pass for the gate to
+# open.
+
+stage: limited_live
+
+checks:
+  - name: freeze_manifest_exists
+    kind: boolean
+    value_key: freeze_manifest_exists
+
+  - name: contamination_clean
+    kind: boolean
+    value_key: contamination_admissible
+
+  - name: minimum_paper_days
+    kind: threshold
+    metric: paper_days_elapsed
+    op: ">="
+    threshold: 30
+
+  - name: minimum_paper_trades
+    kind: threshold
+    metric: paper_trade_count
+    op: ">="
+    threshold: 100
+
+  - name: drawdown_within_envelope
+    kind: threshold
+    metric: max_drawdown_pct
+    op: "<"
+    threshold: 0.05
+
+  - name: fill_rate_acceptable
+    kind: threshold
+    metric: fill_rate
+    op: ">="
+    threshold: 0.8
+
+  - name: reconciliation_clean
+    kind: threshold
+    metric: reconciliation_divergences
+    op: "<="
+    threshold: 2
+
+  - name: runbook_reviewed_with_operator
+    kind: manual
+    default: false

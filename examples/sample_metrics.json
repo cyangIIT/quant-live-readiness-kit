@@ -1,0 +1,15 @@
+{
+  "max_drawdown_pct": 0.018,
+  "daily_pnl_pct": -0.004,
+  "open_positions": 3,
+  "reconciliation_divergences": 4,
+  "reconciliation_match_rate": 0.42,
+  "uptime_pct": 0.99,
+  "order_reject_rate": 0.02,
+  "fill_rate": 0.91,
+  "freeze_manifest_exists": true,
+  "contamination_admissible": true,
+  "paper_trade_count": 220,
+  "paper_days_elapsed": 31,
+  "operator_runbook_reviewed": true
+}

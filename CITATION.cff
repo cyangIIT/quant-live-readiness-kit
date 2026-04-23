@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use quant-live-readiness-kit in academic, research, or industry work, please cite it using the metadata below."
+title: "quant-live-readiness-kit: operational infrastructure for taking systematic trading strategies from research to auditable paper/live readiness"
+abstract: >-
+  A small, strategy-agnostic Python toolkit and CLI that provides
+  the operational primitives a systematic trading strategy needs to
+  move from research backtests to auditable paper- and live-trading:
+  freeze manifests, contamination detection, paper-vs-model fill
+  reconciliation, threshold-based monitoring, a crash-safe kill
+  switch, pluggable alerting, YAML-driven promotion gates, and
+  Markdown incident/daily-review renderers.
+type: software
+authors:
+  - name: "quant-live-readiness-kit contributors"
+keywords:
+  - quantitative-finance
+  - systematic-trading
+  - paper-trading
+  - live-readiness
+  - reconciliation
+  - monitoring
+  - kill-switch
+  - risk-management
+  - python
+  - cli
+license: MIT
+version: 0.1.0
+date-released: "2026-04-23"
+repository-code: "https://github.com/cyangIIT/quant-live-readiness-kit"
+url: "https://github.com/cyangIIT/quant-live-readiness-kit"

@@ -1,0 +1,45 @@
+# Generic monitoring rules. Replace thresholds with numbers that make sense
+# for your strategy. The toolkit does not endorse any particular values.
+
+rules:
+  - name: drawdown_warn
+    metric: max_drawdown_pct
+    op: ">"
+    threshold: 0.03
+    severity: WARN
+    message: "drawdown exceeded soft warning threshold"
+
+  - name: drawdown_halt
+    metric: max_drawdown_pct
+    op: ">"
+    threshold: 0.07
+    severity: HALT
+    message: "drawdown exceeded hard kill threshold — engage kill switch"
+
+  - name: fill_rate_warn
+    metric: fill_rate
+    op: "<"
+    threshold: 0.7
+    severity: WARN
+    message: "fill rate below soft warning"
+
+  - name: fill_rate_halt
+    metric: fill_rate
+    op: "<"
+    threshold: 0.4
+    severity: HALT
+    message: "fill rate collapse — liquidity/execution issue likely"
+
+  - name: reject_rate_warn
+    metric: order_reject_rate
+    op: ">"
+    threshold: 0.05
+    severity: WARN
+    message: "order reject rate elevated"
+
+  - name: reconciliation_divergence_halt
+    metric: reconciliation_divergences
+    op: ">"
+    threshold: 10
+    severity: HALT
+    message: "too many paper/model divergences — stop before proceeding"
